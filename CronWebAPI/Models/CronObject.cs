@@ -21,6 +21,8 @@ namespace CronWebAPI.Models
         public bool Succeeded { get; set; }
         public string Queue { get; set; }
 
+        public string Message { get; set; }
+
         [JsonIgnore]
         public IJobDetail CronJob { get; set; }
 

@@ -91,6 +91,7 @@ namespace CronWebAPI.Repository
                 JobName = message.JobName,
                 DateCreated = DateTime.Now,
                 LastModified = DateTime.Now,
+                Message = message.Message,
                 CronSchedule = message.Cron,
                 LastRun = DateTime.MinValue,
                 Queue = message.QueueName,

@@ -7,6 +7,7 @@ using Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,7 +26,9 @@ namespace CronWebAPI.Services
             QueueClient client = new QueueClient(queueConnection, queueName);
             if (client.Exists())
             {
-                await client.SendMessageAsync(message);
+                var utfBytes = System.Text.Encoding.UTF8.GetBytes(message);
+                await client.SendMessageAsync(System.Convert.ToBase64String(utfBytes));
+                Console.WriteLine("The message has been sent!");
             }
         }
     }
