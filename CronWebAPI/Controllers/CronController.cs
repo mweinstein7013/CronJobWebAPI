@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CronWebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/jobs")]
     public class CronController : ControllerBase
     {
         private readonly CronRepository _cronRepository;
@@ -21,14 +21,12 @@ namespace CronWebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/jobs")]
         public async Task<IList<CronObject>> GetAllCronJobs()
         {
             return await _cronRepository.GetAllCronJobs();
         }
 
         [HttpPost]
-        [Route("/jobs")]
         public async Task<ActionResult> UpsertCronJob([FromBody] CronMessage message)
         {
             var upserted = await _cronRepository.UpsertCronJob(message);
